@@ -1,6 +1,15 @@
-<% provide(:title, 'Home') %>
-<h1>Blog App</h1>
-<p>
-  Blog app following the tut.
-  <a href="http://www.github.com/mach1010/blog_app">Here it is on Github</a>  
-</p>
+<div class="center jumbotron">
+  <h1>Welcome to the Blog App</h1>
+
+  <h2>
+    This is the home page for the
+    <a href="http://www.github.com/mach1010/blog_app">mach1010 blog_app</a>
+    sample application.
+  </h2>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<%= link_to image_tag("rails.png", alt: "Rails logo"),
+            'http://rubyonrails.org/' %>
+
