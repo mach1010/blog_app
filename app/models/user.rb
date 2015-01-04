@@ -48,6 +48,16 @@ class User < ActiveRecord::Base
     UserMailer.account_activation(self).deliver_now
   end
   
+  def password_reset_expired?
+    @user.reset_sent_at < 2.hours.ago
+  end
+  
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+  
   private
   def downcase_email
     self.email = email.downcase
@@ -57,13 +67,7 @@ class User < ActiveRecord::Base
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
-  
-  def create_reset_digest
-    self.reset_token = User.new_token
-    update_attribute(:reset_digest, User.digest(reset_token))
-    update_attribute(:reset_sent_at, Time.zone.now)
-  end
-  
+
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
   end
