@@ -1,0 +1,16 @@
+one:
+  follower: mach1010
+  followed: lana
+
+two:
+  follower: mach1010
+  followed: mallory
+
+three:
+  follower: lana
+  followed: mach1010
+
+four:
+  follower: archer
+  followed: mach1010
+
